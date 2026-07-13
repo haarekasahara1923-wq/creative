@@ -28,6 +28,12 @@ export default function CloudinaryUploader({
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
+    if (file.size > MAX_SIZE) {
+      setError('File size must be less than 50 MB');
+      return;
+    }
+
     setUploading(true);
     setError('');
 
