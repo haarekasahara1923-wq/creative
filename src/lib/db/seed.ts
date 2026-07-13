@@ -16,13 +16,13 @@ async function seed() {
     .limit(1);
 
   if (existingAdmin.length === 0) {
-    const hash = await bcrypt.hash('Admin@123', 12);
+    const hash = await bcrypt.hash('Creative123', 12);
     await db.insert(schema.usersAdmin).values({
-      email: 'admin@creativegroup.in',
+      email: 'admin@creativegroup.space',
       passwordHash: hash,
       name: 'Admin',
     });
-    console.log('✅ Admin created: admin@creativegroup.in / Admin@123');
+    console.log('✅ Admin created: admin@creativegroup.space / Creative123');
   } else {
     console.log('⏭️  Admin already exists, skipping.');
   }

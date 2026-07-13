@@ -8,16 +8,16 @@ export default auth((req) => {
   const role = (session?.user as any)?.role;
 
   // Protect /admin routes
-  if (pathname.startsWith('/admin')) {
+  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
     if (!session || role !== 'admin') {
-      return NextResponse.redirect(new URL('/login?role=admin', req.url));
+      return NextResponse.redirect(new URL('/admin/login', req.url));
     }
   }
 
   // Protect /broker routes
-  if (pathname.startsWith('/broker')) {
+  if (pathname.startsWith('/broker') && pathname !== '/broker/signup') {
     if (!session || role !== 'broker') {
-      return NextResponse.redirect(new URL('/login?role=broker', req.url));
+      return NextResponse.redirect(new URL('/login', req.url));
     }
   }
 

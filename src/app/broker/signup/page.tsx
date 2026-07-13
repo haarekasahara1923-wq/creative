@@ -37,7 +37,7 @@ export default function BrokerSignupPage() {
       // Auto sign in
       const result = await signIn('credentials', { email: form.email, password: form.password, role: 'broker', redirect: false });
       if (result?.error) {
-        router.push('/login?role=broker');
+        router.push('/login');
       } else {
         router.push('/broker');
       }
@@ -121,7 +121,7 @@ export default function BrokerSignupPage() {
           </form>
           <p className="mt-4 text-center text-gray-400 text-sm">
             Already have an account?{' '}
-            <Link href="/login?role=broker" className="text-amber-400 hover:text-amber-300 font-medium">Sign In</Link>
+            <Link href="/login" className="text-amber-400 hover:text-amber-300 font-medium">Sign In</Link>
           </p>
         </div>
       </div>

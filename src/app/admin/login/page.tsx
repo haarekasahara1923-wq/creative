@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Building2, Eye, EyeOff } from 'lucide-react';
 
-export default function BrokerLoginPage() {
+export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,13 +18,13 @@ export default function BrokerLoginPage() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const result = await signIn('credentials', { email, password, role: 'broker', redirect: false });
+    const result = await signIn('credentials', { email, password, role: 'admin', redirect: false });
     if (result?.error) {
-      setError('Invalid email or password. Note: Admin accounts must login at /admin/login');
+      setError('Invalid email or password');
       setLoading(false);
       return;
     }
-    router.push('/broker');
+    router.push('/admin');
   };
 
   return (
@@ -40,8 +40,8 @@ export default function BrokerLoginPage() {
               <span className="text-amber-500 font-bold text-xl"> Group</span>
             </div>
           </Link>
-          <h1 className="text-2xl font-bold text-white">Broker Login</h1>
-          <p className="text-gray-400 mt-1">Sign in to your partner account</p>
+          <h1 className="text-2xl font-bold text-white">Admin Login</h1>
+          <p className="text-gray-400 mt-1">Sign in to CRM Dashboard</p>
         </div>
 
         <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
@@ -53,7 +53,7 @@ export default function BrokerLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-slate-700 border border-slate-600 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                placeholder="broker@email.com"
+                placeholder="admin@email.com"
               />
             </div>
             <div>
@@ -79,11 +79,6 @@ export default function BrokerLoginPage() {
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
-
-          <p className="mt-4 text-center text-gray-400 text-sm">
-            New broker?{' '}
-            <Link href="/broker/signup" className="text-amber-400 hover:text-amber-300 font-medium">Create Account</Link>
-          </p>
         </div>
       </div>
     </div>

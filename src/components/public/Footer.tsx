@@ -93,7 +93,6 @@ export default function Footer({ callNumber, whatsappNumber }: FooterProps) {
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Terms & Conditions</Link>
-            <Link href="/broker/signup" className="text-gray-500 hover:text-amber-400 text-xs transition-colors">Broker Portal</Link>
           </div>
         </div>
       </div>

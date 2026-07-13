@@ -117,6 +117,13 @@ export default function Header({ callNumber }: HeaderProps) {
                   </div>
                 )}
               </div>
+
+              <Link
+                href="/login"
+                className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                Broker Portal
+              </Link>
             </nav>
 
             {/* Call Now Button */}
@@ -176,6 +183,14 @@ export default function Header({ callNumber }: HeaderProps) {
                     {cat.label}
                   </Link>
                 ))}
+              </div>
+              <div className="border-t border-slate-700 pt-2 mt-2">
+                <Link
+                  href="/login"
+                  className="block px-4 py-2.5 rounded-lg text-sm font-medium text-amber-400 hover:text-amber-300"
+                >
+                  Broker Portal
+                </Link>
               </div>
             </div>
           </div>
