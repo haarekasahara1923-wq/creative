@@ -16,6 +16,10 @@ export default function BrokerLoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (email === 'admin@creativegroup.space') {
+      router.push('/admin/login');
+      return;
+    }
     setLoading(true);
     setError('');
     const result = await signIn('credentials', { email, password, role: 'broker', redirect: false });
