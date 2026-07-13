@@ -4,7 +4,7 @@ import BrokerSidebar from '@/components/broker/BrokerSidebar';
 
 export default async function BrokerLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
-  if (!session || (session.user as any).role !== 'broker') redirect('/login?role=broker');
+  if (!session || (session.user as any).role !== 'broker') redirect('/login');
 
   return (
     <div className="flex min-h-screen bg-slate-950">
