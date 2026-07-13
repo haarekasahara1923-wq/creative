@@ -1,31 +1,13 @@
-import NextAuth, { type NextAuthConfig } from 'next-auth';
+import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { db } from '@/lib/db';
 import { usersAdmin, brokers } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
+import { authConfig } from './auth.config';
 
-export const authConfig: NextAuthConfig = {
-  session: { strategy: 'jwt' },
-  pages: {
-    signIn: '/login',
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = (user as any).role;
-        token.email = user.email;
-        token.name = user.name;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token.id as string;
-      (session.user as any).role = token.role;
-      return session;
-    },
-  },
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
       name: 'credentials',
@@ -82,6 +64,4 @@ export const authConfig: NextAuthConfig = {
       },
     }),
   ],
-};
-
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+});
