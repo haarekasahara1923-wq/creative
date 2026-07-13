@@ -16,6 +16,15 @@ export default function BrokerSignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    
+    if (!form.email) {
+      setError('Email is required');
+      return;
+    }
+    if (!form.password) {
+      setError('Password is required');
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -79,7 +88,7 @@ export default function BrokerSignupPage() {
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">Email Address</label>
               <input
-                type="email" required
+                type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full bg-slate-700 border border-slate-600 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
@@ -90,7 +99,7 @@ export default function BrokerSignupPage() {
               <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
               <div className="relative">
                 <input
-                  type={showPw ? 'text' : 'password'} required
+                  type={showPw ? 'text' : 'password'}
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   className="w-full bg-slate-700 border border-slate-600 text-white placeholder-gray-500 rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-amber-500"
@@ -104,7 +113,7 @@ export default function BrokerSignupPage() {
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">Confirm Password</label>
               <input
-                type="password" required
+                type="password"
                 value={form.confirmPassword}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
                 className="w-full bg-slate-700 border border-slate-600 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
